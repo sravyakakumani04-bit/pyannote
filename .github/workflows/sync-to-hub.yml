@@ -28,7 +28,7 @@ jobs:
 
       - name: Add HF remote and push
         env:
-          HF_REPO: yourname/your-repo   # <-- put YOUR repo-id here
+          HF_REPO: sravyakakumani04/pyannote # <-- put YOUR repo-id here
         run: |
           git remote add hf https://huggingface.co/${HF_REPO}.git || true
           git push hf HEAD:main
