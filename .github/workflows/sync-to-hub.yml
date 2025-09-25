@@ -9,7 +9,8 @@ jobs:
   sync-to-hub:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
@@ -17,9 +18,9 @@ jobs:
         run: git lfs install
 
       - name: Login to Hugging Face
-        uses: HuggingFaceH4/huggingface-login@v1
+        uses: huggingface/login@v1
         with:
-          hf_token: ${{ secrets.HF_TOKEN }}
+          token: ${{ secrets.HF_TOKEN }}
 
       - name: Configure git user
         run: |
@@ -28,7 +29,8 @@ jobs:
 
       - name: Add HF remote and push
         env:
-          HF_REPO: sravyakakumani04/pyannote # <-- put YOUR repo-id here
+          HF_REPO: sravyakakumani04/pyannote   # <-- change to YOUR repo id
         run: |
           git remote add hf https://huggingface.co/${HF_REPO}.git || true
           git push hf HEAD:main
+
